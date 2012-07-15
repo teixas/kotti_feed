@@ -31,7 +31,7 @@ def rss_view(context, request):
     return Response(body=rss.to_xml(), content_type='application/rss+xml')
 
 
-def includeme(config):
+def includeme(config):  # pragma: no cover
     config.add_view(
         rss_view,
         name='rss_view',
