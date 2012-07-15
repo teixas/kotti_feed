@@ -1,9 +1,11 @@
 Kotti.db*
 kotti_feed.egg-info/
-.coverage
+kotti_feed/__pycache__/
 bin/
 build/
 dist/
 include/
 lib/
 local/
+.coverage
+*.pyc
