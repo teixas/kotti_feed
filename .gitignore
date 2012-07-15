@@ -1,0 +1,9 @@
+Kotti.db*
+kotti_feed.egg-info/
+.coverage
+bin/
+build/
+dist/
+include/
+lib/
+local/
