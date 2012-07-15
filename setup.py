@@ -32,5 +32,5 @@ setup(name='kotti_feed',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      install_requires=['kotti>=0.7dev'] + tests_require,
+      install_requires=['kotti>=0.7dev', 'PyRSS2Gen'] + tests_require,
       )
