@@ -8,8 +8,11 @@ except IOError:
     README = ''
 
 tests_require = [
+    'WebTest',
     'pytest-cov',
     'pytest',
+    'wsgi_intercept',
+    'zope.testbrowser',
     ]
 
 setup(name='kotti_feed',
