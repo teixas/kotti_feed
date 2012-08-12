@@ -6,6 +6,7 @@ from kotti import get_settings
 from kotti import DBSession
 from kotti.resources import get_root
 from kotti.resources import Content
+from kotti.security import has_permission
 from kotti.views.util import TemplateAPI
 
 
@@ -22,7 +23,8 @@ def rss_items(context, request):
                          description=item.description,
                          guid=RSS2.Guid(api.url(item)),
                          pubDate=item.modification_date,
-                         ) for item in items]
+                         ) for item in items
+            if has_permission('view', item, request)]
 
 
 def rss_view(context, request):
