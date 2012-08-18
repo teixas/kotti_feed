@@ -31,6 +31,33 @@ class TestRSSHeadLink(UnitTestBase):
         assert head_link['rss_link'] == 'http://example.com/rss_view'
 
 
+class TestRSSIcon(UnitTestBase):
+    def test_rss_icon_at_root(self):
+        from kotti_feed.views import rss_icon
+
+        request = DummyRequest()
+        request.static_url = lambda url: url
+        icon = rss_icon(request.context, request)
+        assert 'rss_url' in icon
+        assert 'icon_url' in icon
+        assert icon['rss_url'] == 'http://example.com/rss_view'
+
+    def test_rss_icon_at_child(self):
+        from kotti.resources import get_root
+        from kotti.resources import Document
+        from kotti_feed.views import rss_icon
+
+        request = DummyRequest()
+        request.static_url = lambda url: url
+        root = get_root()
+        child = root['child'] = Document(u'Child')
+
+        icon = rss_icon(child, request)
+        assert 'rss_url' in icon
+        assert 'icon_url' in icon
+        assert icon['rss_url'] == 'http://example.com/child/rss_view'
+
+
 class TestRSSItems(UnitTestBase):
     def test_default_content_type_items(self):
         from kotti_feed.views import rss_items

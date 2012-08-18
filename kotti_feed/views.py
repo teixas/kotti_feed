@@ -59,9 +59,22 @@ def rss_head_link(context, request):
     return rss_info
 
 
+def rss_icon(context, request):
+    api = TemplateAPI(context, request)
+    return dict(
+        rss_url=api.url(context) + 'rss_view',
+        icon_url=request.static_url('kotti_feed:static/feed-icon-14x14.png'))
+
+
 def includeme(config):  # pragma: no cover
     config.add_view(rss_view, name='rss_view', permission='view')
 
     config.add_view(rss_head_link, name='rss-head-link',
                     renderer='templates/rss-head-link.pt')
     assign_slot('rss-head-link', 'inhead')
+
+    config.add_view(rss_icon, name='rss-icon',
+                    renderer='templates/rss-icon.pt')
+    assign_slot('rss-icon', 'abovecontent')
+
+    config.add_static_view('static-kotti_feed', 'kotti_feed:static')
