@@ -7,6 +7,7 @@ from kotti import DBSession
 from kotti.resources import get_root
 from kotti.resources import Content
 from kotti.security import has_permission
+from kotti.views.slots import assign_slot
 from kotti.views.util import TemplateAPI
 
 
@@ -33,25 +34,34 @@ def rss_items(context, request):
                          ) for item in items]
 
 
-def rss_view(context, request):
+def rss_basic_info(context, request):
     settings = get_settings()
     root = get_root()
     api = TemplateAPI(context, request)
-
     rss_title = settings.get('kotti.site_title') or root.title
-    items = rss_items(context, request)
-    rss = RSS2.RSS2(
-        title=rss_title + ' feed',
-        link=api.url(root),
-        description=root.description,
-        items=items,
-        )
+
+    return dict(title=rss_title + ' feed',
+                link=api.url(root),
+                description=root.description)
+
+
+def rss_view(context, request):
+    rss_info = rss_basic_info(context, request)
+    rss_info['items'] = rss_items(context, request)
+    rss = RSS2.RSS2(**rss_info)
+
     return Response(body=rss.to_xml(), content_type='application/rss+xml')
 
 
+def rss_head_link(context, request):
+    rss_info = rss_basic_info(context, request)
+    rss_info['rss_link'] = rss_info['link'] + 'rss_view'
+    return rss_info
+
+
 def includeme(config):  # pragma: no cover
-    config.add_view(
-        rss_view,
-        name='rss_view',
-        permission='view',
-        )
+    config.add_view(rss_view, name='rss_view', permission='view')
+
+    config.add_view(rss_head_link, name='rss-head-link',
+                    renderer='templates/rss-head-link.pt')
+    assign_slot('rss-head-link', 'inhead')

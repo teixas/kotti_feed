@@ -13,10 +13,22 @@ class TestRSS(UnitTestBase):
 
     def test_rss_basic_site(self):
         from kotti_feed.views import rss_view
+
         request = DummyRequest()
         rss = rss_view(request.context, request)
         assert rss.content_type == 'application/rss+xml'
         assert '<channel><title>Welcome to Kotti feed</title>' in rss.body
+
+
+class TestRSSHeadLink(UnitTestBase):
+    def test_rss_head_link(self):
+        from kotti_feed.views import rss_head_link
+
+        request = DummyRequest()
+        head_link = rss_head_link(request.context, request)
+        assert 'title' in head_link
+        assert 'rss_link' in head_link
+        assert head_link['rss_link'] == 'http://example.com/rss_view'
 
 
 class TestRSSItems(UnitTestBase):
