@@ -1,7 +1,6 @@
 from pyramid.threadlocal import get_current_registry
 
 from kotti.testing import DummyRequest
-from kotti.testing import FunctionalTestBase
 from kotti.testing import UnitTestBase
 
 
@@ -89,11 +88,7 @@ class TestRSSItems(UnitTestBase):
         assert len(items) == 0
 
 
-class TestRSSContext(FunctionalTestBase):
-
-    def setUp(self, **kwargs):
-        settings = {'kotti.configurators': 'kotti_feed.kotti_configure'}
-        super(TestRSSContext, self).setUp(**settings)
+class TestRSSContext(UnitTestBase):
 
     def test_root_rss_feed(self):
         from kotti.resources import get_root
