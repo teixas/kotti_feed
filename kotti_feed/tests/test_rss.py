@@ -77,7 +77,7 @@ class TestRSSContext(FunctionalTestBase):
         items = rss_items(root, request)
         assert len(items) == 2
         assert items[0].link == 'http://example.com/'
-        assert items[1].link == 'http://example.com/chid/'
+        assert items[1].link == 'http://example.com/child/'
 
         items = rss_items(child, request)
         assert len(items) == 1
