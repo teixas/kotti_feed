@@ -87,6 +87,18 @@ class TestRSSItems(UnitTestBase):
         items = rss_items(request.context, request)
         assert len(items) == 0
 
+    def test_special_chars_in_feed(self):
+        from kotti_feed.views import rss_view
+        from kotti.resources import Document, get_root
+
+        root = get_root()
+        request = DummyRequest()
+        settings()['kotti_feed.content_types'] = 'document image'
+        root['doc1'] = Document(title=u'L\xc3\xb6vely Document')
+        feed = rss_view(request.context, request)
+        assert u'L\xc3\xb6vely Document' in feed.text
+        assert u'encoding="utf-8"' in feed.text
+
 
 class TestRSSContext(UnitTestBase):
 

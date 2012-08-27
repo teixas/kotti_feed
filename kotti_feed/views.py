@@ -50,7 +50,8 @@ def rss_view(context, request):
     rss_info['items'] = rss_items(context, request)
     rss = RSS2.RSS2(**rss_info)
 
-    return Response(body=rss.to_xml(), content_type='application/rss+xml')
+    return Response(body=rss.to_xml(encoding='utf-8'),
+                    content_type='application/rss+xml')
 
 
 def rss_head_link(context, request):
