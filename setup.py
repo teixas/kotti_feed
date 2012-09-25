@@ -16,7 +16,7 @@ tests_require = [
     ]
 
 setup(name='kotti_feed',
-      version='0.1',
+      version='0.1.1dev',
       description="Add RSS feed generation to your Kotti site",
       long_description=README,
       classifiers=[
