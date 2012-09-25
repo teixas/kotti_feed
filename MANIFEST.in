@@ -1,4 +1,4 @@
 include *.rst
 include *.txt
-recursive-include kotti_site_gallery/static *
-recursive-include kotti_site_gallery/templates *
+recursive-include kotti_feed/static *
+recursive-include kotti_feed/templates *
