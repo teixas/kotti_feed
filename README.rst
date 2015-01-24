@@ -2,6 +2,10 @@
 kotti_feed
 ==========
 
+.. image:: https://pypip.in/version/kotti_feed/badge.svg
+    :target: https://pypi.python.org/pypi/kotti_feed/
+    :alt: Latest Version
+
 This is an extension to the Kotti CMS that allows you to generate RSS
 2.0 feeds from your Kotti site.
 
