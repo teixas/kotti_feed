@@ -1,0 +1,21 @@
+Change History
+==============
+
+0.2 - 2015-01-24
+----------------
+
+- Register views by setting up ``pyramid.includes`` instead of using deprecated
+  ``kotti.includes``.
+
+  Note: If you need to use Kotti versions prior to 1.0 then pin
+  kotti_feed to 0.1.1 to avoid instalation problems.
+
+0.1.1 - 2015-01-24
+------------------
+
+- Mark as latest version that works with Kotti < 1.0
+
+0.1 - 2012-09-25
+----------------
+
+- Initial release

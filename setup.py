@@ -4,8 +4,9 @@ from setuptools import setup, find_packages
 here = os.path.abspath(os.path.dirname(__file__))
 try:
     README = open(os.path.join(here, 'README.rst')).read()
+    CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 except IOError:
-    README = ''
+    README = CHANGES = ''
 
 tests_require = [
     'WebTest',
@@ -18,7 +19,7 @@ tests_require = [
 setup(name='kotti_feed',
       version='0.2',
       description="Add RSS feed generation to your Kotti site",
-      long_description=README,
+      long_description='\n\n'.join([README, CHANGES]),
       classifiers=[
           "Programming Language :: Python",
           "Framework :: Pylons",
