@@ -1,8 +1,10 @@
 Change History
 ==============
 
-0.1.1dev Unreleased
--------------------
+0.1.1 - 2015-01-24
+------------------
+
+- Mark as latest version that works with Kotti < 1.0
 
 0.1 - 2012-09-25
 ----------------
