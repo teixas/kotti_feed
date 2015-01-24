@@ -16,7 +16,7 @@ tests_require = [
 ]
 
 setup(name='kotti_feed',
-      version='0.1.1dev',
+      version='0.1.1',
       description="Add RSS feed generation to your Kotti site",
       long_description=README,
       classifiers=[
@@ -35,5 +35,5 @@ setup(name='kotti_feed',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      install_requires=['kotti>=0.7', 'PyRSS2Gen'] + tests_require,
+      install_requires=['kotti<1.0', 'PyRSS2Gen'] + tests_require,
       )
